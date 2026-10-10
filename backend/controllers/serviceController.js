@@ -11,6 +11,20 @@ const getServices= asyncHandler( async(req,res)=>{
     res.status(200).json(services);
 })
 
+//@desc Get a services
+//@route GET /api/services/:id
+//@access Public
+const getService= asyncHandler( async(req,res)=>{
+    const service= await Service.findById(req.params.id);
+
+    if(!service){
+        res.status(400)
+        throw new Error('Service not found');
+    };
+        res.status(200).json(service);
+})
+
+
 //@desc Create a service
 //@route POST /api/services
 //@access Private
@@ -58,6 +72,7 @@ const deleteService= asyncHandler(async(req,res)=>{
 
 module.exports = {
     getServices,
+    getService,
     createService,
     updateService,
     deleteService,

@@ -7,13 +7,7 @@ const bookingSchema = mongoose.Schema(
       required: true,
       ref: 'Room',
     },
-   client:{
-        type: mongoose.Schema.Types.ObjectId,
-        required:false,
-        unique: true,
-        ref:'User',
-    },
-    firstname:{
+   firstname:{
       type : String,
       required:[true, 'Please add your first name'],
     },

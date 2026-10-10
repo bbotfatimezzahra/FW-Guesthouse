@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const {getBookings,
+    getBooking,
     createBooking,
     verifyBooking,
     updateBooking,
@@ -13,6 +14,6 @@ router.route('/').get(protect,getBookings).post(createBooking);
 
 router.get('/:id/verify/:token',verifyBooking);
 
-router.route('/:id').put(protect,updateBooking).delete(protect,deleteBooking);
+router.route('/:id').get(protect,getBooking).put(protect,updateBooking).delete(protect,deleteBooking);
 
 module.exports=router;

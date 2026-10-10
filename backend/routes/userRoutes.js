@@ -2,17 +2,17 @@ const express =require('express');
 const router = express.Router();
 
 const {getUsers,
-    logIn,
-    signUp,
+    login,
+    register,
     getMe,
-    //updateUser
+    updateUser
 }=require('../controllers/userController');
 const {protect}=require('../middleware/authMiddleware')
 
 router.get('/',getUsers)
-router.post('/login',logIn);
-router.post('/signup',signUp);
+router.post('/login',login);
+router.post('/register',register);
 router.get('/me',protect,getMe);
-//router.put('/update',protect,updateUser);
+router.put('/update',protect,updateUser);
 
 module.exports =router;

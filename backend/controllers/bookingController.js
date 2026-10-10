@@ -16,6 +16,19 @@ const getBookings= asyncHandler( async(req,res)=>{
     res.status(200).json(bookings);
 })
 
+//@desc Get a single booking
+//@route GET /api/bookings/:id
+//@access Private
+const getBooking= asyncHandler( async(req,res)=>{
+    const booking = await Booking.findById(req.params.id);
+
+    if(!booking){
+        res.status(400);
+        throw new Error('Booking not found');
+    }
+    res.status(200).json(booking);
+})
+
 //@desc Create a booking
 //@route POST /api/bookings
 //@access Public
@@ -108,6 +121,7 @@ const deleteBooking= asyncHandler(async(req,res)=>{
 
 module.exports = {
     getBookings,
+    getBooking,
     createBooking,
     verifyBooking,
     updateBooking,
